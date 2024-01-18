@@ -19,6 +19,8 @@ jobs:
     timeout-minutes: 50
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Determine version
         run: echo "VERSION=$(git describe --tags --match "v*" --always --abbrev=7)" >> $GITHUB_ENV
