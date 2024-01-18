@@ -41,7 +41,7 @@ jobs:
           provenance: false
           push: false
           platforms: ${{ matrix.arch }}
-          cache-from: type=registry,ref=ghcr.io/cyberagentai/libvips:${{ matrix.variant }}
+          cache-from: type=registry,ref=ghcr.io/cyberagentai/libvips:${{ matrix.variant }}-buildcache
           file: Dockerfile.${{ matrix.variant }}
 
 concurrency:
