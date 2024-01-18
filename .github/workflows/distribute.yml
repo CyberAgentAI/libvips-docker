@@ -43,7 +43,7 @@ jobs:
           # platforms: linux/amd64,linux/arm64
           platforms: linux/amd64
           file: Dockerfile.${{ matrix.variant }}
-          tags: ghcr.io/cyberagentai/libvips:${{ env.VERSION }}
+          tags: ghcr.io/cyberagentai/libvips:${{ matrix.variant }}-${{ env.VERSION }}
 
 concurrency:
   group: pr-${{ github.workflow }}-${{ github.ref }}
