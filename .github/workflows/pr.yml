@@ -1,0 +1,36 @@
+name: pr
+
+on:
+  pull_request:
+    types:
+      - opened
+      - synchronize
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+    permissions:
+      contents: read
+    strategy:
+      fail-fast: false
+      matrix:
+        variant: [bookworm-jpg-png]
+        arch: [linux/amd64, linux/arm64]
+    timeout-minutes: 50
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build container image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          provenance: false
+          push: false
+          platforms: ${{ matrix.arch }}
+          file: Dockerfile.${{ matrix.variant }}
