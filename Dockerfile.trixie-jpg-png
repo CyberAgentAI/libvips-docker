@@ -1,0 +1,11 @@
+# syntax=docker/dockerfile:1
+FROM debian:trixie-slim AS builder
+
+ENV LIBVIPS_VERSION 8.15.1
+ENV LIBVIPS_HASH 36db25cca3bf15df963100971d203784
+
+COPY ./build.sh /build.sh
+RUN BUILD_TARGET=jpg_png /build.sh jpg_png
+
+FROM debian:trixie-slim
+COPY --from=builder /vips /vips
