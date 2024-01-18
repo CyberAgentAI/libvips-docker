@@ -34,10 +34,6 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Pull image cache if exists
-        run: docker pull ghcr.io/cyberagentai/libvips:${{ matrix.variant }}
-        continue-on-error: true
-
       - name: Build container image
         uses: docker/build-push-action@v5
         with:
@@ -45,6 +41,7 @@ jobs:
           provenance: false
           push: false
           platforms: ${{ matrix.arch }}
+          cache-from: type=registry,ref=ghcr.io/cyberagentai/libvips:${{ matrix.variant }}
           file: Dockerfile.${{ matrix.variant }}
 
 concurrency:
