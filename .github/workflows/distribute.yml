@@ -33,12 +33,12 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Build container image
+      - name: Build and push container image
         uses: docker/build-push-action@v5
         with:
           context: .
           provenance: false
-          push: false
+          push: true
           # TODO
           # platforms: linux/amd64,linux/arm64
           platforms: linux/amd64
