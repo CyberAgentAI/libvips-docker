@@ -34,3 +34,7 @@ jobs:
           push: false
           platforms: ${{ matrix.arch }}
           file: Dockerfile.${{ matrix.variant }}
+
+concurrency:
+  group: pr-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
