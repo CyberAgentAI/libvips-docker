@@ -17,7 +17,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        variant: [bookworm-jpg-png]
+        variant: [bookworm-jpg-png, trixie-jpg-png]
         arch: [linux/amd64, linux/arm64]
     timeout-minutes: 50
     steps:
