@@ -80,7 +80,7 @@ function build_vips() {
   pushd /build/vips
     curl -fsSLO https://github.com/libvips/libvips/releases/download/v${LIBVIPS_VERSION}/vips-${LIBVIPS_VERSION}.tar.xz
 
-    hash=$(md5sum vips-${LIBVIPS_VERSION}.tar.xz | cut -d ' ' -f 1)
+    hash=$(sha256sum vips-${LIBVIPS_VERSION}.tar.xz | cut -d ' ' -f 1)
     if [ "${hash}" != "${LIBVIPS_HASH}" ]; then
       echo "## Invalid LIBVIPS_HASH !! EXIT ##" 1>&2
       echo "# expected: ${LIBVIPS_HASH}" 1>&2
