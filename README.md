@@ -16,4 +16,53 @@ $ docker pull ghcr.io/cyberagentai/libvips:bookworm-jpg-png-v8.15.1
 ```
 
 # Example Usage
-TODO
+```dockerfile
+FROM ghcr.io/cyberagentai/libvips:bookworm-jpg-png-v8.15.1 as libvips
+FROM debian:bookworm-slim
+
+# Copy shared libs
+# or you can copy /vips/lib/$(uname -m)-linux-gnu/* into /lib/$(uname -m)-linux-gnu/*
+COPY --from=libvips /vips/ /vips/
+
+# Copy the binary that requires libvips
+COPY ./app /app
+
+# Run the app
+RUN LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/vips/lib/$(uname -m)-linux-gnu /app
+```
+
+# Directory structure
+```bash
+$ tree /vips/
+/vips/
+|-- bin
+|   |-- vips
+|   |-- ... other cmd tools
+|-- include
+|   `-- vips
+|       |-- vips.h
+|       |-- ... other header files
+|-- lib
+|   `-- aarch64-linux-gnu
+|       |-- libvips-cpp.so -> libvips-cpp.so.42
+|       |-- libvips-cpp.so.42 -> libvips-cpp.so.42.17.1
+|       |-- libvips-cpp.so.42.17.1
+|       |-- libvips.so -> libvips.so.42
+|       |-- libvips.so.42 -> libvips.so.42.17.1
+|       |-- libvips.so.42.17.1
+|       |-- libhwy.so -> libhwy.so.1
+|       |-- libhwy.so.1 -> libhwy.so.1.0.7
+|       |-- libhwy.so.1.0.7
+|       |-- libjpeg.so -> libjpeg.so.62
+|       |-- libjpeg.so.62 -> libjpeg.so.62.3.0
+|       |-- libjpeg.so.62.3.0
+|       |-- ... other shared libs required by libvips
+|       `-- pkgconfig
+|           |-- vips-cpp.pc
+|           `-- vips.pc
+`-- share
+    `-- man
+        `-- man1
+            |-- vips.1
+            |-- ... other man files
+```
