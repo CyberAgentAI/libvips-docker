@@ -10,6 +10,21 @@ on:
   workflow_dispatch:
 
 jobs:
+  release-check:
+    runs-on: ubuntu-22.04
+    permissions:
+      contents: read
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: pipe-cd/actions-gh-release@v2.6.0
+        with:
+          release_file: "RELEASE"
+          token: ${{ secrets.GITHUB_TOKEN }}
+
   build:
     runs-on: ubuntu-22.04
     permissions:
