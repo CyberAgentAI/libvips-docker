@@ -60,7 +60,7 @@ jobs:
           platforms: linux/amd64,linux/arm64
           file: Dockerfile.${{ matrix.variant }}
           cache-to: type=registry,ref=ghcr.io/cyberagentai/libvips-buildcache:${{ matrix.variant }}
-          cache-from: type=registry,ref=ghcr.io/cyberagentai/libvips:${{ matrix.variant }}-buildcache
+          cache-from: type=registry,ref=ghcr.io/cyberagentai/libvips-buildcache:${{ matrix.variant }}
           tags: |
             ghcr.io/cyberagentai/libvips:${{ matrix.variant }}-${{ env.VERSION }}
 
