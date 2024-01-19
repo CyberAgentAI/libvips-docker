@@ -5,7 +5,7 @@ docker build for libvips
 
 | Name | Base Image | Architecture | libvips build confg |
 | :-- | :-- | :-- | :-- |
-| bookworm-jpg-png | debian:bookworm-slim | amd64, arm64 | -Dexamples=false -Dcplusplus=true -Dhighway=enabled -Dexif=enabled -Djpeg=enabled -Dopenjpeg=enabled -Dspng=enabled |
+| trixie-jpg-png | debian:trixie-slim | amd64, arm64 | -Dexamples=false -Dcplusplus=true -Dhighway=enabled -Dexif=enabled -Djpeg=enabled -Dopenjpeg=enabled -Dspng=enabled |
 | bookworm-jpg-png | debian:bookworm-slim | amd64, arm64 | -Dexamples=false -Dcplusplus=true -Dhighway=enabled -Dexif=enabled -Djpeg=enabled -Dopenjpeg=enabled -Dspng=enabled |
 
 # Public images
