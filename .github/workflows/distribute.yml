@@ -22,6 +22,11 @@ jobs:
         with:
           fetch-depth: 0
 
+      - uses: pipe-cd/actions-gh-release@v2.6.0
+        with:
+          release_file: "RELEASE"
+          token: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Determine version
         run: echo "VERSION=$(git describe --tags --match "v*" --always --abbrev=7)" >> $GITHUB_ENV
 
