@@ -95,6 +95,8 @@ function build_vips() {
       meson setup build --prefix /vips ${build_opts}
       pushd build
         meson compile
+        meson test --timeout-multiplier 2
+        cat /build/vips/vips-${LIBVIPS_VERSION}/build/meson-logs/testlog.txt
         meson install
       popd
     popd
