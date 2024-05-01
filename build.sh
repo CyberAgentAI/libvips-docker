@@ -107,7 +107,7 @@ function build_vips() {
   popd
 
   pushd /vips/lib/$(uname -m)-linux-gnu/
-    dep_vips=$(cat /build/vips/vips-so-dep.txt /build/vips/vips-cpp-so-dep.txt | sort | uniq | grep -v -e 'ld-linux' -e 'linux-vdso' -e 'libvips.so')
+    dep_vips=$(cat /build/vips/vips-so-dep.txt /build/vips/vips-cpp-so-dep.txt | sort | uniq | grep -v -e 'libc.so' -e 'ld-linux' -e 'linux-vdso' -e 'libvips.so')
     for dep in ${dep_vips}; do
       cp -a /lib/$(uname -m)-linux-gnu/${dep}* .
     done
