@@ -1,7 +1,7 @@
 # syntax=docker/dockerfile:1
 FROM debian:trixie-slim AS builder
 
-ENV LIBVIPS_VERSION 8.15.1
+ENV LIBVIPS_VERSION 8.15.2
 # sha256sum of tar.xz file on https://github.com/libvips/libvips/releases
 ENV LIBVIPS_HASH 06811f5aed3e7bc03e63d05537ff4b501de5283108c8ee79396c60601a00830c
 
