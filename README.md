@@ -12,12 +12,12 @@ docker build for libvips
 Public images are available at: [https://github.com/orgs/CyberAgentAI/packages/container/package/libvips](https://github.com/orgs/CyberAgentAI/packages/container/package/libvips)
 
 ```bash
-$ docker pull ghcr.io/cyberagentai/libvips:bookworm-jpg-png-v8.15.1
+$ docker pull ghcr.io/cyberagentai/libvips:bookworm-jpg-png-v8.15.2
 ```
 
 # Example Usage
 ```dockerfile
-FROM ghcr.io/cyberagentai/libvips:bookworm-jpg-png-v8.15.1 as libvips
+FROM ghcr.io/cyberagentai/libvips:bookworm-jpg-png-v8.15.2 as libvips
 FROM debian:bookworm-slim
 
 # Copy shared libs
